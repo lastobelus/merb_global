@@ -9,12 +9,20 @@ module Merb
     before do
       # Set up the language
       accept_language = self.request.env['HTTP_ACCEPT_LANGUAGE']
+      if Merb::Global.config(:locale_in_session)
+        if params[:locale]
+          session[:locale] = params[:locale]
+        elsif session[:locale]
+          params[:locale] = session[:locale]
+        end
+      end
       Merb::Global::Locale.current =
         Merb::Global::Locale.new(params[:locale]) ||
         (self._mg_locale &&
          Merb::Global::Locale.new(self.instance_eval(&self._mg_locale))) ||
          Merb::Global::Locale.from_accept_language(accept_language) || 
          Merb::Global::Locale.new('en')
+      params[:locale] ||= Merb::Global::Locale.current.to_s
     end
 
     # Sets the language of block.
