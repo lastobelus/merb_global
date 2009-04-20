@@ -131,6 +131,10 @@ module Merb
         Merb::Global::config('locales', ['en'])
       end
       
+      def default?
+        self.to_s ==  Merb::Global::config('locales', ['en']).first
+      end
+      
       def self.choose(except)
         new((supported_locales - except.map{|e| e.to_s}).first)
       end
