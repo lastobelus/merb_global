@@ -132,7 +132,7 @@ module Merb
       end
       
       def default?
-        self.to_s ==  Merb::Global::config('locales', ['en']).first
+        self.to_s == Merb::Global::Locale.supported_locales.first
       end
       
       def self.choose(except)
