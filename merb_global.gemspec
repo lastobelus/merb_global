@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-
 Gem::Specification.new do |s|
   s.name = "merb_global"
   s.version = "0.0.14"
