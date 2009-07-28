@@ -9,7 +9,7 @@ module Merb
     before do
       # Set up the language
       accept_language = self.request.env['HTTP_ACCEPT_LANGUAGE']
-      if Merb::Global.config(:locale_in_session)
+      if Merb::Global.config(:locale_in_session, false)
         if params[:locale]
           session[:locale] = params[:locale]
         elsif session[:locale]

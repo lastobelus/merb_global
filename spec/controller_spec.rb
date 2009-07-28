@@ -40,6 +40,8 @@ describe Merb::Controller do
   it 'should take the weights into account' do
     de = Merb::Global::Locale.new('de')
     Merb::Global.stubs(:config).with('locales', ['en']).returns(['de', 'es'])
+    Merb::Global.stubs(:config).with(:locale_in_session, false).returns(false)
+
     controller = dispatch_to(TestController, :index) do |controller|
       controller.request.env['HTTP_ACCEPT_LANGUAGE'] =
         'de;q=0.8,en;q=1.0,es;q=0.6'
@@ -60,6 +62,7 @@ describe Merb::Controller do
     fr = Merb::Global::Locale.new('fr')
     en = Merb::Global::Locale.new('en')
     Merb::Global.stubs(:config).with('locales', ['en']).returns(['en','fr'])
+    Merb::Global.stubs(:config).with(:locale_in_session, false).returns(false)
     controller = dispatch_to(TestController, :index) do |controller|
       controller.request.env['HTTP_ACCEPT_LANGUAGE'] = '*,en;q=0.7'
     end
@@ -87,6 +90,7 @@ describe Merb::Controller do
   it 'should fallback to lang if lang_REGION is not supported' do
     pt = Merb::Global::Locale.new('pt')
     Merb::Global.stubs(:config).with('locales', ['en']).returns(['pt'])    
+    Merb::Global.stubs(:config).with(:locale_in_session, false).returns(false)
     controller = dispatch_to(TestController, :index) do |controller|
       controller.request.env['HTTP_ACCEPT_LANGUAGE'] = 'es-ES,pt-BR;q=0.7'
     end
