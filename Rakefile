@@ -10,33 +10,18 @@ EMAIL = "merb_global@googlegroups.com"
 HOMEPAGE = "http://trac.ikonoklastik.com/merb_global/"
 SUMMARY = "Localization (L10n) and Internationalization (i18n) support for the Merb MVC Framework"
 
-def spec
-  require 'spec/rake/spectask'
-  Gem::Specification.new do |s|
-    s.name = NAME
-    s.version = GEM_VERSION
-    s.platform = Gem::Platform::RUBY
-    s.summary = SUMMARY
-    s.description = s.summary
-    s.authors = AUTHORS
-    s.email = EMAIL
-    s.homepage = HOMEPAGE
-    s.rubyforge_project = 'merb-global'
-    s.add_dependency('merb-core', '>= 0.9.1')
-    s.add_dependency('treetop', '>= 1.2.3') # Tested on 1.2.3
-    s.require_path = 'lib'
-    s.autorequire = PLUGIN
-    s.files = %w(LICENSE README Rakefile TODO HISTORY) +
-              Dir.glob("{lib,specs,*_generators,examples}/**/*")
-    
-    # rdoc
-    s.has_rdoc = true
-    s.extra_rdoc_files = %w(README LICENSE TODO HISTORY)
+begin
+  require 'jeweler'
+  Jeweler::Tasks.new do |gemspec|
+    gemspec.name = NAME
+    gemspec.summary = SUMMARY
+    gemspec.description = gemspec.summary
+    gemspec.email = EMAIL
+    gemspec.homepage = HOMEPAGE
+    gemspec.authors = AUTHORS
   end
-end
-
-Rake::GemPackageTask.new(spec) do |pkg|
-  pkg.gem_spec = spec
+rescue LoadError
+  puts "Jeweler not available. Install it with: sudo gem install technicalpickles-jeweler -s http://gems.github.com"
 end
 
 desc "Install merb_global"
@@ -60,6 +45,8 @@ task :populate_db do
   FileUtils.cp db, "#{pwd}/examples/sequel_example/database.db"
 end
 task "pkg/#{NAME}-#{GEM_VERSION}" => [:populate_db]
+
+require 'spec/rake/spectask'
 
 desc "Run all specs"
 Spec::Rake::SpecTask.new('specs') do |st|
