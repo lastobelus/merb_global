@@ -16,6 +16,14 @@ module Merb
         @language, @country = name.split('-')
       end
 
+      def as_rfc1766
+        if @country.nil?
+          "#{@language.downcase}"
+        else
+          "#{@language.downcase}-#{@country.downcase}"
+        end
+      end
+
       #
       # This method checks if the locale is 'wildcard' locale. I.e.
       # if any locale will suit

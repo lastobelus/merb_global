@@ -3,7 +3,7 @@
 
 Gem::Specification.new do |s|
   s.name = "merb_global"
-  s.version = "0.0.7"
+  s.version = "0.0.8"
   s.platform = Gem::Platform::RUBY
   s.summary = "Localization (L10n) and Internationalization (i18n) support for the Merb MVC Framework"
   s.description = s.summary

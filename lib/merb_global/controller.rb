@@ -5,17 +5,7 @@ module Merb
     include Merb::Global
 
     class_inheritable_accessor :_mg_locale
-
-    before do
-      # Set up the language
-      accept_language = self.request.env['HTTP_ACCEPT_LANGUAGE']
-      Merb::Global::Locale.current =
-        Merb::Global::Locale.new(params[:locale]) ||
-        (self._mg_locale &&
-         Merb::Global::Locale.new(self.instance_eval(&self._mg_locale))) ||
-         Merb::Global::Locale.from_accept_language(accept_language) || 
-         Merb::Global::Locale.new('en')
-    end
+    before :setup_language
 
     # Sets the language of block.
     #
@@ -34,5 +24,17 @@ module Merb
     def self.locale(&block)
       self._mg_locale = block
     end
+
+    def setup_language
+      # Set up the language
+      accept_language = self.request.env['HTTP_ACCEPT_LANGUAGE']
+      Merb::Global::Locale.current =
+        (!params[:locale].nil? && params[:locale].to_s.length > 0 && Merb::Global::Locale.new(params[:locale])) ||
+        (self._mg_locale &&
+         Merb::Global::Locale.new(self.instance_eval(&self._mg_locale))) ||
+         Merb::Global::Locale.from_accept_language(accept_language) || 
+         Merb::Global::Locale.new('en')
+    end
+    
   end
 end
