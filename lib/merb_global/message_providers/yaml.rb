@@ -61,38 +61,6 @@ module Merb
           nil
         end
 
-        def localize(singular, plural, n, locale)
-          unless Merb.environment == "development"
-            lang = @lang
-          else
-            lang = {}
-          end
-          
-          unless lang.include? locale
-            file = File.join Merb::Global::MessageProviders.localedir,
-                             locale.to_s + '.yaml'
-            if File.exist? file
-              lang[locale] = YAML.load_file file
-            else
-              # TODO: Check if it not opens security risk
-              lang[locale] = nil
-            end
-          end
-
-          unless lang[locale].nil?
-            lang = lang[locale]
-            unless lang[singular].nil?
-              unless plural.nil?
-                n = Merb::Global::Plural.which_form n, lang[:plural]
-                return lang[singular][n] unless lang[singular][n].nil?
-              else
-                return lang[singular] unless lang[singular].nil?
-              end
-            end
-          end
-          return n > 1 ? plural : singular
-        end
-
         def create!
           FileUtils.mkdir_p Merb::Global::MessageProviders.localedir
         end
