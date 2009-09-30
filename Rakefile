@@ -2,11 +2,11 @@ require 'rubygems'
 require 'rake/gempackagetask'
 require 'rake/rdoctask'
 
-PLUGIN = "merb_global"
-NAME = "merb_global"
+PLUGIN = "emipair-merb_global"
+NAME = "emipair-merb_global"
 GEM_VERSION = "0.0.7"
-AUTHORS = ["Alex Coles", "Maciej Piechotka"]
-EMAIL = "merb_global@googlegroups.com"
+AUTHORS = ["Matt Kent", "Ryan Dy"]
+EMAIL = "eng@emimusic.com"
 HOMEPAGE = "http://trac.ikonoklastik.com/merb_global/"
 SUMMARY = "Localization (L10n) and Internationalization (i18n) support for the Merb MVC Framework"
 
