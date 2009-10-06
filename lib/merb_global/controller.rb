@@ -29,7 +29,7 @@ module Merb
       # Set up the language
       accept_language = self.request.env['HTTP_ACCEPT_LANGUAGE']
       Merb::Global::Locale.current =
-        (!params[:locale].nil? && params[:locale].to_s.length > 0 && Merb::Global::Locale.new(params[:locale])) ||
+        (!params[:locale].nil? && params[:locale].to_s.length > 0 && Merb::Global::Locale.new(h(params[:locale]))) ||
         (self._mg_locale &&
          Merb::Global::Locale.new(self.instance_eval(&self._mg_locale))) ||
          Merb::Global::Locale.from_accept_language(accept_language) || 
