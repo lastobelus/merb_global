@@ -1,0 +1,11 @@
+# What I had to do to get specs to run
+# ------------------------------------
+
+rake specs
+mate /opt/local/lib/ruby/gems/1.8/gems/extlib-0.9.11/lib/extlib/time.rb
+# change remove_method :to_time if method_defined?(:to_time) || private_method_defined?(:to_time)
+# to remove_method :to_time if instance_methods.include?(:to_time)
+
+mate /opt/local/lib/ruby/gems/1.8/gems/extlib-0.9.11/lib/extlib/datetime.rb
+sudo gem update polyglot
+sudo gem install composite_primary_keys

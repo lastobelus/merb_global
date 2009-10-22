@@ -2,7 +2,7 @@ require 'spec_helper'
 
 if HAS_SEQUEL
 
-  DB = Sequel.open 'sqlite:///'
+  DB = Sequel.connect 'sqlite:///'
 
   require 'merb_global/message_providers/sequel'
   load    Pathname(__FILE__).dirname.parent.parent.expand_path +

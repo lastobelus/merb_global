@@ -2,6 +2,7 @@
 # This is quick hack to avoid naming confict in specs
 class Merb::Global::MessageProviders::Sequel
 #<% end %>
+require 'sequel/extensions/migration'
 class AddTranslationsMigration < Sequel::Migration
   def up
     create_table :merb_global_languages do

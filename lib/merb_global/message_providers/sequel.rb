@@ -85,7 +85,7 @@ module Merb
 
         class Language < ::Sequel::Model(:merb_global_languages)
           set_primary_key :id
-          has_many :translations,
+          one_to_many :translations,
                    :class => "Merb::Global::MessageProviders::Sequel::Translation",
                    :key => :language_id
         end

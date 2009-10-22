@@ -2,6 +2,7 @@ require 'rubygems'
 
 # Providers
 def load_provider_lib(*libs)
+  lib = nil
   begin
     libs.each {|lib| require lib}
     true
