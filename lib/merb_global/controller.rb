@@ -16,6 +16,9 @@ module Merb
           params[:locale] = session[:locale]
         end
       end
+
+      params[:locale].gsub!('_','-') unless params[:locale].blank?
+      
       Merb::Global::Locale.current =
         Merb::Global::Locale.new(params[:locale]) ||
         (self._mg_locale &&
