@@ -37,7 +37,7 @@ module Merb
 
         def import
           data = {}
-          ::DataMapper::Transaction.new(Language, Translation) do
+          ::DataMapper::Transaction.new(Language, Translation).commit do
             Language.all.each do |language|
               data[language.name] = lang_hash = {
                 :plural => language.plural,
@@ -57,7 +57,7 @@ module Merb
         end
 
         def export(data)
-          ::DataMapper::Transaction.new(Language, Translation) do
+          ::DataMapper::Transaction.new(Language, Translation).commit do
             Translation.all.each {|translation| translation.destroy}
             Language.all.each {|language| language.destroy}
             data.each do |lang_name, lang|
