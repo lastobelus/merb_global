@@ -17,7 +17,7 @@ HAS_DM      = load_provider_lib 'dm-core', 'dm-validations', 'dm-aggregates'
 HAS_GETTEXT = load_provider_lib 'gettext'
 HAS_SEQUEL  = load_provider_lib 'sequel'
 
-HAS_HAML    = load_provider_lib 'haml'
+HAS_HAML_SPECS    = load_provider_lib 'haml', 'webrat'
 
 require 'merb-core'
 
