@@ -22,6 +22,6 @@ task :updatepo do
 end
 
 desc "Create app mo files"
-task :makemo => :merb_start do
-  GetText.create_mofiles(:mo_root => "app/locale", :po_root => "app/locale")
+task :makemo do
+  GetText.create_mofiles(:mo_root => "../locale", :po_root => "../locale")
 end

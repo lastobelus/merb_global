@@ -22,15 +22,15 @@ msgstr "Polish Partial Underscore Text"
 
 #: templates/_partial.html.haml:4
 msgid "Partial Inline Text"
-msgstr "Polish Partial Inline Text"
+msgstr "Partial Inline Polish Text"
 
 #: templates/_partial.html.haml:7
 msgid "block of text in partial"
-msgstr "Polish block of text in partial"
+msgstr "block of Polish text in partial"
 
 #: templates/_partial.html.haml:11
 msgid "text in localize filter in partial"
-msgstr "Polish text in localize filter in partial"
+msgstr "text is Polish in localize filter in partial"
 
 #: templates/basic.html.haml:2
 msgid "Test"
@@ -45,20 +45,20 @@ msgstr "Cześć"
 
 #: templates/basic.html.haml:8
 msgid "Underscore Text"
-msgstr "Polish Underscore Text"
+msgstr "Underscore Polish Text"
 
 #: templates/basic.html.haml:10
 msgid "Inline Text"
-msgstr "Polish Inline Text"
+msgstr "Inline Polish Text"
 
 #: templates/basic.html.haml:13
 msgid "block of text"
-msgstr "Polish block of text"
+msgstr "block of Polish text"
 
 #: templates/basic.html.haml:17
 msgid "text in localize filter"
-msgstr "Polish text in localize filter"
+msgstr "text is Polish in localize filter"
 
 #: templates/interpolation.html.haml:3
 msgid "text in localize filter with %{inum} interpolations"
-msgstr "Polish %{inum} text in localize filter with interpolations"
+msgstr "text in localize filter is Polish and has interpolations (%{inum} of them)"
