@@ -34,5 +34,6 @@ module Haml
   end
 end
 
-Haml::Engine.send(:include, Merb::Global::Helpers::HamlGettext) 
+Haml::Engine.send(:include, Merb::Global::Helpers::HamlGettext)
+puts "sending include to Haml::Engine"
 Haml::Engine.send(:include, Merb::Global)

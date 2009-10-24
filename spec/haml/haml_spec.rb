@@ -2,9 +2,13 @@
 require 'spec_helper'
 require 'stringio'
 
+class TestBase
+  attr_accessor :inum
+  include Merb::Global
+end
 
 def test_render(text, options = {}, &block)
-  scope  = options.delete(:scope)  || Object.new
+  scope  = options.delete(:scope)  || TestBase.new
   locals = options.delete(:locals) || {}
   test_engine(text, options).to_html(scope, locals, &block)
 end
@@ -20,9 +24,11 @@ def test_engine(text, options = {})
 end
 
 def test_template(name)
+  name += '.html.haml'
+  template_path = File.join(File.dirname(__FILE__),'templates',name)
+  File.read(template_path)
 end
 
-Merb::Global::Locale
 if HAS_GETTEXT
 
   require 'merb_global/message_providers/gettext'
@@ -42,9 +48,12 @@ if HAS_GETTEXT
         
         describe "basic" do
           before do
+            @html = test_render(test_template('basic'))
           end
           
-          it "should translate with underscore method in script blocks"          
+          it "should translate with underscore method in script blocks" do
+            puts "@html: #{@html}"
+          end
           it "should translate inline plain text"
           it "should translate blocks of plain text"
           it "should provide a :localize filter"
