@@ -20,6 +20,10 @@ class Haml::Engine
   def push_plain(text)
     @precompiled << "_(\"#{text.strip}\")\n"
   end
+
+  def push_script(text, opts={})
+    @precompiled << "#{text}\n"
+  end
 end
 
 # Haml gettext parser
@@ -33,6 +37,7 @@ module HamlParser
   def parse(file, ary = [])
     haml = Haml::Engine.new(IO.readlines(file).join)
     code = haml.precompiled.split(/$/)
+    puts "code: #{code.inspect}"
     GetText::RubyParser.parse_lines(file, code, ary)
   end
 end

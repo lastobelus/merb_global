@@ -1,0 +1,27 @@
+require 'pathname'
+$LOAD_PATH.unshift(Pathname(__FILE__).dirname.parent.parent.expand_path.to_s + '/lib')
+
+require 'gettext/tools'
+require 'merb-core'
+
+Merb::Plugins.config[:merb_global] = {
+  :provider => 'mock',
+  :localedir => File.join('spec', 'locale')
+}
+
+require 'merb_global'
+require 'merb_global/parsers/haml_parser'
+
+task :default => [:makemo]
+
+desc "i8n Update pot/po files."
+task :updatepo do
+  puts "Dir.pwd: #{Dir.pwd.inspect}"
+  puts "Dir.glob: " + Dir.glob("templates/**/*.{rb,erb,rjs,haml}").inspect
+  GetText.update_pofiles("merbapp", Dir.glob("templates/**/*.{rb,erb,rjs,haml}"), "merb_global 0", :po_root => "../locale", :verbose => true)
+end
+
+desc "Create app mo files"
+task :makemo => :merb_start do
+  GetText.create_mofiles(:mo_root => "app/locale", :po_root => "app/locale")
+end
