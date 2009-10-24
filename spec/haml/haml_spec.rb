@@ -3,8 +3,10 @@ require 'spec_helper'
 require 'stringio'
 
 class TestBase
-  attr_accessor :inum
   include Merb::Global
+  def inum
+    return 42
+  end
 end
 
 def test_render(text, options = {}, &block)
@@ -56,9 +58,22 @@ if HAS_GETTEXT
             @body.should have_selector(".underscore", :content => "Underscore Text")
           end
 
-          it "should translate inline plain text"
-          it "should translate blocks of plain text"
-          it "should provide a :localize filter"
+          it "should translate inline plain text" do
+            @body.should have_selector(".inline", :content => "Inline Text")
+          end
+
+          it "should translate blocks of plain text" do
+            @body.should have_selector(".block", :content => "block of text")
+          end
+          
+          it "should provide a :localize filter" do
+            @body.should have_selector(".localize_filter", :content => "text in localize filter")
+          end
+
+          it "should do interpolation in translations" do
+            @body.should have_selector(".interpolation", :content => "text in localize filter with 42 interpolations")
+          end
+          
         end
       end
       
