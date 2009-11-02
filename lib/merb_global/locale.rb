@@ -101,6 +101,7 @@ module Merb
             return lang if lang && Merb::Global::Locale.support?(lang)
           end
         end
+        return nil
       end
 
       # Returns current locale

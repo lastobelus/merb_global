@@ -1,0 +1,35 @@
+---
+# You don't need all these gems to use merb_global, but you do need them
+# to run the full test suite. This is incomplete, but it is a start.
+defaults:
+  install_options: --no-rdoc --no-ri --ignore-dependencies
+gemcutter_options: &gemcutter_options
+  install_options: --no-rdoc --no-ri --ignore-dependencies --source http://gemcutter.org
+
+active_support_gems_version: &active_support_gems_version
+  version: 2.3.4
+data_mapper_gems_version: &data_mapper_gems_version
+  version: 0.9.11
+gettext_gems_version: &gettext_gems_version
+  version: 2.0.4
+
+gems:
+- name: activesupport
+  <<: *active_support_gems_version
+- name: activerecord
+  <<: *active_support_gems_version
+- name: locale
+  <<: *gettext_gems_version
+- name: gettext
+  <<: *gettext_gems_version
+# The sequel tests are failing; may need an older version?
+# - name: sequel
+#   version: 3.6.0
+- name: mocha
+  version: 0.9.8
+- name: composite_primary_keys
+  version: 2.3.2
+- name: do_sqlite3
+  <<: *data_mapper_gems_version
+- name: data_objects
+  <<: *data_mapper_gems_version
