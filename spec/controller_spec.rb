@@ -105,4 +105,27 @@ describe Merb::Controller do
     end
     Merb::Global::Locale.current.should == pt
   end
+  
+  it 'should work with hyphen as locale separator' do
+    derschweize = Merb::Global::Locale.new('fr-CH')
+    Merb::Global.stubs(:config).with(:locale_in_session, false).returns(false)
+    controller = dispatch_to(TestController, :index, :locale => 'fr-CH') do |controller|
+      controller.request.env.delete 'HTTP_ACCEPT_LANGUAGE'
+    end
+    Merb::Global::Locale.current.should == derschweize
+    Merb::Global::Locale.current.language.should == 'fr'
+    Merb::Global::Locale.current.country.should == 'CH'    
+  end
+
+  it 'should work with underscore as locale separator' do
+    derschweize = Merb::Global::Locale.new('fr-CH')
+    Merb::Global.stubs(:config).with(:locale_in_session, false).returns(false)
+    controller = dispatch_to(TestController, :index, :locale => 'fr_CH') do |controller|
+      controller.request.env.delete 'HTTP_ACCEPT_LANGUAGE'
+    end
+    Merb::Global::Locale.current.should == derschweize
+    Merb::Global::Locale.current.language.should == 'fr'
+    Merb::Global::Locale.current.country.should == 'CH'    
+  end
+
 end
