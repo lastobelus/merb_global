@@ -12,14 +12,15 @@ def load_provider_lib(*libs)
   end
 end
 
+require 'merb-core'
+
 HAS_AR      = load_provider_lib 'activerecord'
 HAS_DM      = load_provider_lib 'dm-core', 'dm-validations', 'dm-aggregates'
 HAS_GETTEXT = load_provider_lib 'gettext'
 HAS_SEQUEL  = load_provider_lib 'sequel'
 
-HAS_HAML_SPECS    = load_provider_lib 'haml', 'webrat'
+HAS_HAML_SPECS    = load_provider_lib 'haml', 'webrat', 'merb-haml'
 
-require 'merb-core'
 
 Merb::Plugins.config[:merb_global] = {
   :provider => 'mock',

@@ -47,34 +47,32 @@ if HAS_GETTEXT
       describe "with the default locale" do
         before do
           Merb::Global::Locale.stubs(:current).returns(Merb::Global::Locale.new('en'))
+          @body = test_render(test_template('basic'))
         end
         
-        describe "basic" do
-          before do
-            @body = test_render(test_template('basic'))
-          end
-          
-          it "should translate with underscore method in script blocks" do
-            @body.should have_selector(".underscore", :content => "Underscore Text")
-          end
-
-          it "should translate inline plain text" do
-            @body.should have_selector(".inline", :content => "Inline Text")
-          end
-
-          it "should translate blocks of plain text" do
-            @body.should have_selector(".block", :content => "block of text")
-          end
-          
-          it "should provide a :localize filter" do
-            @body.should have_selector(".localize_filter", :content => "text in localize filter")
-          end
-
-          it "should do interpolation in translations" do
-            @body.should have_selector(".interpolation", :content => "text in localize filter with 42 interpolations")
-          end
-          
+        before do
         end
+        
+        it "should translate with underscore method in script blocks" do
+          @body.should have_selector(".underscore", :content => "Underscore Text")
+        end
+
+        it "should translate inline plain text" do
+          @body.should have_selector(".inline", :content => "Inline Text")
+        end
+
+        it "should translate blocks of plain text" do
+          @body.should have_selector(".block", :content => "block of text")
+        end
+        
+        it "should provide a :localize filter" do
+          @body.should have_selector(".localize_filter", :content => "text in localize filter")
+        end
+
+        it "should do interpolation in translations" do
+          @body.should have_selector(".interpolation", :content => "text in localize filter with 42 interpolations")
+        end
+          
       end
 
 
@@ -82,34 +80,29 @@ if HAS_GETTEXT
       describe "with the polish locale" do
         before do
           Merb::Global::Locale.stubs(:current).returns(Merb::Global::Locale.new('pl'))
+          @body = test_render(test_template('basic'))
+        end
+                  
+        it "should translate with underscore method in script blocks" do
+          @body.should have_selector(".underscore", :content => "Underscore Polish Text")
+        end
+
+        it "should translate inline plain text" do
+          @body.should have_selector(".inline", :content => "Inline Polish Text")
+        end
+
+        it "should translate blocks of plain text" do
+          @body.should have_selector(".block", :content => "block of Polish text")
         end
         
-        describe "basic" do
-          before do
-            @body = test_render(test_template('basic'))
-          end
-          
-          it "should translate with underscore method in script blocks" do
-            @body.should have_selector(".underscore", :content => "Underscore Polish Text")
-          end
-
-          it "should translate inline plain text" do
-            @body.should have_selector(".inline", :content => "Inline Polish Text")
-          end
-
-          it "should translate blocks of plain text" do
-            @body.should have_selector(".block", :content => "block of Polish text")
-          end
-          
-          it "should provide a :localize filter" do
-            @body.should have_selector(".localize_filter", :content => "text is Polish in localize filter")
-          end
-
-          it "should do interpolation in translations" do
-            @body.should have_selector(".interpolation", :content => "text in localize filter is Polish and has interpolations (42 of them)")
-          end
-          
+        it "should provide a :localize filter" do
+          @body.should have_selector(".localize_filter", :content => "text is Polish in localize filter")
         end
+
+        it "should do interpolation in translations" do
+          @body.should have_selector(".interpolation", :content => "text in localize filter is Polish and has interpolations (42 of them)")
+        end
+          
       end
       
     end
