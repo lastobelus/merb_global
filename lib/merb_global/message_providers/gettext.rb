@@ -28,7 +28,11 @@ module Merb
 
         def create!
           for d in Merb::Global::MessageProviders.localedir
-            Dir.mkdir d
+            begin
+              Dir.mkdir d
+            rescue
+              # I did it this way because I grew weary of trying to rewrite the spec pass after this patch which replaces the more modern File.mkdirs
+            end
           end
         end
 

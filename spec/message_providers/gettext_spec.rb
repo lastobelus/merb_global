@@ -13,7 +13,7 @@ if HAS_GETTEXT
 
     describe '.create!' do
       it 'should create directory' do
-        File.expects(:mkdirs).with(Merb::Global::MessageProviders.localedir)
+        Dir.expects(:mkdir).with(Merb::Global::MessageProviders.localedir).times([Merb::Global::MessageProviders.localedir].flatten.length)
         @provider.create!
       end
     end
