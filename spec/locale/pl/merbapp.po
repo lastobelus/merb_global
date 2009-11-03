@@ -3,62 +3,62 @@
 # This file is distributed under the same license as the merb_global package.
 # Maciej Piechotka <uzytkownik2@gmail.com>, 2008.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: merb_global 0\n"
 "POT-Creation-Date: 2009-10-22 22:04-0700\n"
-"PO-Revision-Date: 2008-05-16 20:47+0200\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2008-05-24 13:17+0100\n"
+"Last-Translator: Maciej Piechotka <uzytkownik2@gmail.com>\n"
+"Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2);\n"
 
 #: templates/_partial.html.haml:2
 msgid "Partial Underscore Text"
-msgstr ""
+msgstr "Polish Partial Underscore Text"
 
 #: templates/_partial.html.haml:4
 msgid "Partial Inline Text"
-msgstr ""
+msgstr "Partial Inline Polish Text"
 
 #: templates/_partial.html.haml:7
 msgid "block of text in partial"
-msgstr ""
+msgstr "block of Polish text in partial"
 
 #: templates/_partial.html.haml:11
 msgid "text in localize filter in partial"
-msgstr ""
+msgstr "text is Polish in localize filter in partial"
 
 #: templates/basic.html.haml:2
-#: test.c:4
 msgid "Test"
 msgid_plural "Tests"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Test"
+msgstr[1] "Testy"
+msgstr[2] "Testów"
 
 #: templates/basic.html.haml:5
 msgid "Hello"
-msgstr ""
+msgstr "Cześć"
 
 #: templates/basic.html.haml:8
 msgid "Underscore Text"
-msgstr ""
+msgstr "Underscore Polish Text"
 
 #: templates/basic.html.haml:10
 msgid "Inline Text"
-msgstr ""
+msgstr "Inline Polish Text"
 
 #: templates/basic.html.haml:13
 msgid "block of text"
-msgstr ""
+msgstr "block of Polish text"
 
 #: templates/basic.html.haml:17
 msgid "text in localize filter"
-msgstr ""
+msgstr "text is Polish in localize filter"
 
 #: templates/interpolation.html.haml:3
 msgid "text in localize filter with %{inum} interpolations"
-msgstr ""
+msgstr "text in localize filter is Polish and has interpolations (%{inum} of them)"

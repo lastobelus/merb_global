@@ -64,6 +64,7 @@ if HAS_DM
       end
       
       it 'should put data in the hash' do
+        debugger
         @provider.import.should == {
           "en" => {
             :nplural => 2, :plural => 'n==1?0:1',
