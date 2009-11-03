@@ -1,9 +1,7 @@
 require 'rubygems'
-require 'rake/gempackagetask'
 require 'rake/rdoctask'
 
 NAME = "lastobelus-merb_global"
-GEM_VERSION = "0.0.14"
 AUTHORS = ["Alex Coles", "Maciej Piechotka", "Michael Johnston"]
 EMAIL = "merb_global@googlegroups.com"
 HOMEPAGE = "http://trac.ikonoklastik.com/merb_global/"
@@ -23,11 +21,6 @@ rescue LoadError
   puts "Jeweler not available. Install it with: sudo gem install technicalpickles-jeweler -s http://gems.github.com"
 end
 
-desc "Install merb_global"
-task :install => [:package] do
-  sh %{gem install pkg/#{NAME}-#{GEM_VERSION}}
-end
-
 Rake::RDocTask.new do |rd|
   rd.rdoc_dir = "doc"
   rd.rdoc_files.include "lib/**/*.rb"
@@ -43,7 +36,7 @@ task :populate_db do
   FileUtils.cp db, "#{pwd}/examples/data_mapper_example/database.db"
   FileUtils.cp db, "#{pwd}/examples/sequel_example/database.db"
 end
-task "pkg/#{NAME}-#{GEM_VERSION}" => [:populate_db]
+
 
 require 'spec/rake/spectask'
 
