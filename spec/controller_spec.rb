@@ -44,6 +44,14 @@ describe Merb::Controller do
     Merb::Global::Locale.current.should == Merb::Global::Locale.new('fr')
   end
 
+  it 'should use default locale when none of the ACCEPT_LANGUAGEs are supported' do
+    Merb::Global::Locale.stubs(:support?).returns(false)
+    controller = dispatch_to(TestController, :index) do |controller|
+      controller.request.env['HTTP_ACCEPT_LANGUAGE'] = 'fr-FR'
+    end
+    Merb::Global::Locale.current.should == Merb::Global::Locale.new('en')
+  end
+
   it 'should take the weights into account' do
     de = Merb::Global::Locale.new('de')
     Merb::Global.stubs(:config).with('locales', ['en']).returns(['de', 'es'])

@@ -1,4 +1,6 @@
 require 'rubygems'
+lib_dir = File.join(File.dirname(__FILE__), '..', 'lib')
+$:.unshift(lib_dir);
 
 # Providers
 def load_provider_lib(*libs)

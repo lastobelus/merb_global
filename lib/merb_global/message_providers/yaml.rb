@@ -16,23 +16,27 @@ module Merb
           @lang = Hash.new
         end
 
-        def localize(singular, plural, n, locale)
-          unless Merb.environment == "development"
+        def to_json(locale)
+          locale ||= Locale.new("en")
+          unless ["development", "test"].include?(Merb.environment)
             lang = @lang
           else
             lang = {}
           end
-          
-          unless lang.include? locale
-            file = File.join Merb::Global::MessageProviders.localedir,
-                             locale.to_s + '.yaml'
-            if File.exist? file
-              lang[locale] = YAML.load_file file
-            else
-              # TODO: Check if it not opens security risk
-              lang[locale] = nil
-            end
+
+          lang[locale] = yaml_data(locale) unless lang.include?(locale)
+          lang[locale].to_json
+        end
+
+        # Extracted yaml_data from this method to support looking through several yaml files.
+        def localize(singular, plural, n, locale)
+          unless ["development", "test"].include?(Merb.environment)
+            lang = @lang
+          else
+            lang = {}
           end
+
+          lang[locale] = yaml_data(locale) unless lang.include?(locale)
 
           unless lang[locale].nil?
             lang = lang[locale]
@@ -46,6 +50,15 @@ module Merb
             end
           end
           return n > 1 ? plural : singular
+        end
+
+        def yaml_data(locale)
+          files_to_try = ["#{locale}.yaml", "#{locale.language}.yaml"]
+          files_to_try.each do |filename|
+            file = File.join(Merb::Global::MessageProviders.localedir, filename)
+            return YAML.load_file(file) if File.exist?(file)
+          end
+          nil
         end
 
         def create!
